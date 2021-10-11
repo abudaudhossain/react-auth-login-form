@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const handelRegister = e =>{
+    console.log("well register is done");
+    e.preventDefault();
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <form onSubmit ={handelRegister} >
+       <h3>Please Register</h3>
+       <label htmlFor="email">Email: </label>
+       <input type="email" name="email" />
+       <br />
+       <label htmlFor="password">Password: </label>
+       <input type="password" name="password" />
+       <br />
+       <input type="submit" value="register" />
+     </form>
     </div>
   );
 }
