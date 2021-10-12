@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import initialzAuthentication from './firebase/firebase.initialize';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,sendEmailVerification  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail,sendEmailVerification , FacebookAuthProvider,signInWithPopup  } from "firebase/auth";
 
 initialzAuthentication();
 
@@ -80,6 +80,20 @@ function App() {
         // ..
       });
   }
+
+  const handelFacebookLogin = () =>{
+    const facebookProvider = new FacebookAuthProvider();
+
+    signInWithPopup(auth, facebookProvider)
+    .then (result =>{
+      console.log(result.user);
+    }).catch(error =>{
+      console.log(error.message);
+    })
+  }
+
+
+
   return (
     <div className="container my-5">
       <h3 className="text-primary">Please {isLogin ? "Login" : "Register"}</h3>
@@ -103,6 +117,10 @@ function App() {
           isLogin && <button onClick = {hendelRestPassword} className="btn btn-primary mx-3 btn-sm">Forget Password</button>
         }
       </form>
+
+
+      <br /><br /><br />
+      <button onClick ={handelFacebookLogin}>Login Facebook</button>
     </div>
   );
 }
